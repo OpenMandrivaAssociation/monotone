@@ -1,5 +1,5 @@
 %define name    monotone
-%define version 0.33
+%define version 0.35
 %define release %mkrel 1
 %define summary A distributed version control tool
 
@@ -13,7 +13,7 @@ Group: Development/Other
 Source: http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.bz2
 Url: http://monotone.ca
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	boost-devel popt-devel
+BuildRequires:	boost-devel
 BuildRequires:  zlib-devel
 
 %description
@@ -57,5 +57,3 @@ rm -rf %buildroot
 %{_infodir}/%{name}*
 %doc %{_docdir}/%{name}/%{name}.html
 %doc AUTHORS COPYING NEWS README UPGRADE
-
-
