@@ -37,8 +37,11 @@ make check
 %install
 rm -rf %buildroot
 %makeinstall
-%__install -d -m 755 %buildroot%_sysconfdir/bash_completion.d
-%__install -m 644 contrib/monotone.bash_completion %buildroot%_sysconfdir/bash_completion.d/%{name}
+%__install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
+%__install -m 644 contrib/monotone.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+# let RPM copy this file
+%__rm -f %{buildroot}%{_docdir}/%{name}/%{name}.html
+
 %find_lang %{name}
 
 %clean
@@ -55,5 +58,4 @@ rm -rf %buildroot
 %{_bindir}/mtn
 %{_sysconfdir}/bash_completion.d/%{name}
 %{_infodir}/%{name}*
-%doc %{_docdir}/%{name}/%{name}.html
-%doc AUTHORS COPYING NEWS README UPGRADE
+%doc AUTHORS COPYING NEWS README UPGRADE monotone.html contrib
