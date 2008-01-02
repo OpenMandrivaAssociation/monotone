@@ -12,6 +12,7 @@ License: GPL
 Group: Development/Other
 Source: http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.gz
 Url: http://monotone.ca
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	boost-devel
 BuildRequires:  zlib-devel
 
