@@ -1,6 +1,6 @@
 %define name    monotone
-%define version 0.40
-%define release %mkrel 2
+%define version 0.41
+%define release %mkrel 1
 %define summary A distributed version control tool
 
 
@@ -55,7 +55,7 @@ rm -rf %buildroot
 
 %files -f %{name}.lang
 %defattr(-,root,root,0755)
-%{_bindir}/mtn
+%{_bindir}/mtn*
 %{_sysconfdir}/bash_completion.d/%{name}
 %{_infodir}/%{name}*
 %doc AUTHORS COPYING NEWS README UPGRADE monotone.html contrib
