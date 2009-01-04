@@ -1,5 +1,5 @@
 %define name    monotone
-%define version 0.41
+%define version 0.42
 %define release %mkrel 1
 %define summary A distributed version control tool
 
