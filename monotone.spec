@@ -15,6 +15,7 @@ Url: http://monotone.ca
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	boost-devel
 BuildRequires:  zlib-devel
+BuildRequires:  texinfo
 
 %description
 monotone is a free, distributed version control system. it provides
