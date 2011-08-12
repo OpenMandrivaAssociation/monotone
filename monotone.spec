@@ -1,6 +1,6 @@
 %define name    monotone
-%define version 0.42
-%define release %mkrel 2
+%define version 1.0
+%define release %mkrel 1
 %define summary A distributed version control tool
 
 
@@ -10,10 +10,14 @@ Version:        %version
 Release:        %release
 License: GPL
 Group: Development/Other
-Source: http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.gz
+Source: http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.bz2
+Patch1: monotone-1.0-format-error.patch
+Patch2: monotone-1.0-file_handle.patch
+Patch3: monotone-1.0-fix-help.patch
 Url: http://monotone.ca
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	boost-devel
+BuildRequires:	botan-devel
 BuildRequires:  zlib-devel
 BuildRequires:  texinfo
 
@@ -27,6 +31,9 @@ functions to client-side RSA certificates.
 
 %prep
 %setup -q
+%patch1 -p0
+%patch2 -p0
+%patch3 -p0
 
 %build
 %configure2_5x
@@ -39,9 +46,10 @@ make check
 rm -rf %buildroot
 %makeinstall
 %__install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
-%__install -m 644 contrib/monotone.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+%__install -m 644 extra/shell/monotone.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 # let RPM copy this file
 %__rm -f %{buildroot}%{_docdir}/%{name}/%{name}.html
+%__rm -f %{buildroot}%{_sysconfdir}/bash_completion.d/*.bash_completion
 
 %find_lang %{name}
 
@@ -59,4 +67,7 @@ rm -rf %buildroot
 %{_bindir}/mtn*
 %{_sysconfdir}/bash_completion.d/%{name}
 %{_infodir}/%{name}*
-%doc AUTHORS COPYING NEWS README UPGRADE monotone.html contrib
+%{_mandir}/man1/*
+/usr/share/%{name}/hooks/*
+/usr/share/%{name}/scripts/*
+%doc AUTHORS COPYING NEWS README UPGRADE contrib
