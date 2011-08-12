@@ -1,6 +1,6 @@
 %define name    monotone
 %define version 1.0
-%define release %mkrel 1
+%define release %mkrel 2
 %define summary A distributed version control tool
 
 
@@ -18,8 +18,13 @@ Url: http://monotone.ca
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	boost-devel
 BuildRequires:	botan-devel
-BuildRequires:  zlib-devel
+BuildRequires:	gettext-devel
+BuildRequires:	idn-devel
+BuildRequires:	lua-devel
+BuildRequires:	pcre-devel
+BuildRequires:	sqlite3-devel
 BuildRequires:  texinfo
+BuildRequires:  zlib-devel
 
 %description
 monotone is a free, distributed version control system. it provides
