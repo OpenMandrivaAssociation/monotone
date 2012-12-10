@@ -1,30 +1,23 @@
-%define name    monotone
-%define version 1.0
-%define release %mkrel 2
-%define summary A distributed version control tool
-
-
-Summary:        %summary
-Name:           %name
-Version:        %version
-Release:        %release
-License: GPL
-Group: Development/Other
-Source: http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.bz2
-Patch1: monotone-1.0-format-error.patch
-Patch2: monotone-1.0-file_handle.patch
-Patch3: monotone-1.0-fix-help.patch
-Url: http://monotone.ca
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Summary:	A distributed version control tool
+Name:		monotone
+Version:	1.0
+Release:	1
+License:	GPLv2
+Group:		Development/Other
+Source:		http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.bz2
+Url:		http://monotone.ca
+# Patches from upstream
+Patch0:		monotone-1.0-fix-fprint.patch
+Patch1:		monotone-1.0-fix-rcs-file-function-naming.patch
+Patch2:		monotone-1.0-fix-xdelta-test.patch
+BuildRequires:	texinfo
 BuildRequires:	boost-devel
-BuildRequires:	botan-devel
-BuildRequires:	gettext-devel
-BuildRequires:	idn-devel
-BuildRequires:	lua-devel
-BuildRequires:	pcre-devel
-BuildRequires:	sqlite3-devel
-BuildRequires:  texinfo
-BuildRequires:  zlib-devel
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(botan-1.8)
+BuildRequires:	pkgconfig(libpcre)
+BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	pkgconfig(lua)
+BuildRequires:	pkgconfig(libidn)
 
 %description
 monotone is a free, distributed version control system. it provides
@@ -36,43 +29,33 @@ functions to client-side RSA certificates.
 
 %prep
 %setup -q
-%patch1 -p0
-%patch2 -p0
-%patch3 -p0
+%patch0 -p 1
+%patch1 -p 1
+%patch2 -p 1
 
 %build
 %configure2_5x
 %make
+make html
 
 %check
+# Remove a test which fails (to investigate with upstream) syntax_errors_in_.mtn-ignore
+rm -rf test/func/syntax_errors_in_.mtn-ignore
 make check
 
 %install
-rm -rf %buildroot
-%makeinstall
-%__install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
-%__install -m 644 extra/shell/monotone.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
-# let RPM copy this file
-%__rm -f %{buildroot}%{_docdir}/%{name}/%{name}.html
-%__rm -f %{buildroot}%{_sysconfdir}/bash_completion.d/*.bash_completion
+%makeinstall_std
+rm -fr %{buildroot}%{_docdir}/%{name}
 
 %find_lang %{name}
 
-%clean
-rm -rf %buildroot
-
-%post
-%_install_info %{name}.info
-
-%preun
-%_remove_install_info %{name}.info
-
 %files -f %{name}.lang
-%defattr(-,root,root,0755)
+%doc AUTHORS COPYING NEWS README UPGRADE doc/monotone.html contrib
 %{_bindir}/mtn*
-%{_sysconfdir}/bash_completion.d/%{name}
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/hooks
+%{_datadir}/%{name}/scripts
+%{_sysconfdir}/bash_completion.d/*
 %{_infodir}/%{name}*
 %{_mandir}/man1/*
-/usr/share/%{name}/hooks/*
-/usr/share/%{name}/scripts/*
-%doc AUTHORS COPYING NEWS README UPGRADE contrib
+

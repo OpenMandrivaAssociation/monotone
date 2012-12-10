@@ -1,0 +1,13 @@
+Index: monotone-1.0/src/cmd.cc
+===================================================================
+--- monotone-1.0/src/cmd.cc
++++ monotone-1.0/src/cmd.cc	2012-02-11 23:18:12.000000000 +0000
+@@ -974,7 +974,7 @@
+     F("could not execute man page formatter command '%s': %s")
+       % cmd % strerror(errno));
+ 
+-  fprintf(fp, ss.str().c_str());
++  fputs(ss.str().c_str(), fp);
+   pclose(fp);
+ }
+ 

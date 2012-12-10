@@ -1,0 +1,34 @@
+Index: monotone-1.0/Makefile.am
+===================================================================
+--- monotone-1.0/Makefile.am
++++ monotone-1.0/Makefile.am	2012-02-14 00:15:33.000000000 +0000
+@@ -191,7 +191,7 @@
+ 	test/unit/tests/restrictions.cc test/unit/tests/revision.cc		\
+ 	test/unit/tests/simplestring_xform.cc test/unit/tests/transforms.cc	\
+ 	test/unit/tests/uri.cc test/unit/tests/vocab.cc				\
+-	test/unit/tests/xdelta.cc test/unit/tests/numeric_vocab.cc		\
++	test/unit/tests/numeric_vocab.cc		\
+ 	test/unit/tests/sha1.cc test/unit/tests/string_queue.cc			\
+ 	test/unit/unit_tester.cc
+ 
+Index: monotone-1.0/Makefile.in
+===================================================================
+--- monotone-1.0/Makefile.in
++++ monotone-1.0/Makefile.in	2012-02-14 00:14:58.000000000 +0000
+@@ -422,7 +422,6 @@
+ 	test/unit/tests/simplestring_xform.$(OBJEXT) \
+ 	test/unit/tests/transforms.$(OBJEXT) \
+ 	test/unit/tests/uri.$(OBJEXT) test/unit/tests/vocab.$(OBJEXT) \
+-	test/unit/tests/xdelta.$(OBJEXT) \
+ 	test/unit/tests/numeric_vocab.$(OBJEXT) \
+ 	test/unit/tests/sha1.$(OBJEXT) \
+ 	test/unit/tests/string_queue.$(OBJEXT) \
+@@ -887,7 +886,7 @@
+ 	test/unit/tests/restrictions.cc test/unit/tests/revision.cc		\
+ 	test/unit/tests/simplestring_xform.cc test/unit/tests/transforms.cc	\
+ 	test/unit/tests/uri.cc test/unit/tests/vocab.cc				\
+-	test/unit/tests/xdelta.cc test/unit/tests/numeric_vocab.cc		\
++	test/unit/tests/numeric_vocab.cc		\
+ 	test/unit/tests/sha1.cc test/unit/tests/string_queue.cc			\
+ 	test/unit/unit_tester.cc
+ 
