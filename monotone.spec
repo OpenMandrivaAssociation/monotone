@@ -1,7 +1,7 @@
 Summary:	A distributed version control tool
 Name:		monotone
 Version:	1.0
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Development/Other
 Url:		http://monotone.ca
