@@ -4,7 +4,7 @@ Version:	1.0
 Release:	3
 License:	GPLv2+
 Group:		Development/Other
-Url:		http://monotone.ca
+Url:		https://monotone.ca
 Source0:	http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.bz2
 # Patches from upstream
 Patch0:		monotone-1.0-fix-fprint.patch
