@@ -10,6 +10,11 @@ Source0:	http://monotone.ca/downloads/%{version}/%{name}-%{version}.tar.bz2
 Patch0:		monotone-1.0-fix-fprint.patch
 Patch1:		monotone-1.0-fix-rcs-file-function-naming.patch
 Patch2:		monotone-1.0-fix-xdelta-test.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	texinfo
 BuildRequires:	boost-devel
 BuildRequires:	pkgconfig(botan-1.8)
